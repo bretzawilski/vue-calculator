@@ -40,7 +40,7 @@
             id="num-7"
             class="calc-button number"
             value="7"
-            @click="addInt"
+            @click="pushInt"
           >
             7
           </button>
@@ -48,7 +48,7 @@
             id="num-8"
             class="calc-button number"
             value="8"
-            @click="addInt"
+            @click="pushInt"
           >
             8
           </button>
@@ -56,7 +56,7 @@
             id="num-9"
             class="calc-button number"
             value="9"
-            @click="addInt"
+            @click="pushInt"
           >
             9
           </button>
@@ -71,7 +71,7 @@
             id="num-4"
             class="calc-button number"
             value="4"
-            @click="addInt"
+            @click="pushInt"
           >
             4
           </button>
@@ -79,7 +79,7 @@
             id="num-5"
             class="calc-button number"
             value="5"
-            @click="addInt"
+            @click="pushInt"
           >
             5
           </button>
@@ -87,7 +87,7 @@
             id="num-6"
             class="calc-button number"
             value="6"
-            @click="addInt"
+            @click="pushInt"
           >
             6
           </button>
@@ -95,7 +95,7 @@
             id="num-1"
             class="calc-button number"
             value="1"
-            @click="addInt"
+            @click="pushInt"
           >
             1
           </button>
@@ -103,7 +103,7 @@
             id="num-2"
             class="calc-button number"
             value="2"
-            @click="addInt"
+            @click="pushInt"
           >
             2
           </button>
@@ -111,20 +111,27 @@
             id="num-3"
             class="calc-button number"
             value="3"
-            @click="addInt"
+            @click="pushInt"
           >
             3
           </button>
-          <button id="op-equal" class="calc-button operator">=</button>
+          <button id="op-equal" class="calc-button operator" @click="equals">
+            =
+          </button>
           <button
             id="num-0"
             class="calc-button number"
             value="0"
-            @click="addInt"
+            @click="pushInt"
           >
             0
           </button>
-          <button id="dec" class="calc-button number" value="." @click="addInt">
+          <button
+            id="dec"
+            class="calc-button number"
+            value="."
+            @click="pushInt"
+          >
             .
           </button>
         </div>

@@ -4,6 +4,7 @@ const display = new Vue({
     rawValue: [0],
     accumulator: "",
     operation: "",
+    finalInt: 0,
   },
   computed: {
     calcValue: function () {
@@ -14,15 +15,12 @@ const display = new Vue({
           this.rawValue[1] !== "."
         ) {
           this.rawValue.splice(0, 1);
-          let displayValue = parseFloat(this.rawValue.join(""));
-          return displayValue;
+          return this.returnDisplay();
         } else if (this.rawValue.length > 12) {
           this.rawValue.pop();
-          let displayValue = parseFloat(this.rawValue.join(""));
-          return displayValue;
+          return this.returnDisplay();
         } else {
-          let displayValue = parseFloat(this.rawValue.join(""));
-          return displayValue;
+          return this.returnDisplay();
         }
       } else {
         if (this.rawValue[0] === 0 && this.rawValue.length === 1) {
@@ -35,26 +33,19 @@ const display = new Vue({
             this.rawValue[1] !== "."
           ) {
             this.rawValue.splice(0, 1);
-            let displayValue = parseFloat(this.rawValue.join(""));
-            return displayValue;
+            return this.returnDisplay();
           } else if (this.rawValue.length > 12) {
             this.rawValue.pop();
-            let displayValue = parseFloat(this.rawValue.join(""));
-            return displayValue;
+            return this.returnDisplay();
           } else {
-            let displayValue = parseFloat(this.rawValue.join(""));
-            return displayValue;
+            return this.returnDisplay();
           }
         }
       }
     },
-    returnDisplay: function () {
-      let displayValue = parseFloat(this.rawValue.join(""));
-      return displayValue;
-    },
   },
   methods: {
-    addInt: function (event) {
+    pushInt: function (event) {
       this.rawValue.push(event.currentTarget.value);
       // if (!this.accumulator) {
       //   this.rawValue.push(event.currentTarget.value);
@@ -66,14 +57,27 @@ const display = new Vue({
       this.rawValue = [0];
       this.accumulator = "";
       this.operation = "";
+      this.finalInt = 0;
+    },
+    returnDisplay: function () {
+      let displayValue = parseFloat(this.rawValue.join(""));
+      return displayValue;
     },
     operate: function (operator) {
       if (!Number(this.accumulator)) {
         this.accumulator = parseFloat(this.calcValue);
-      } else {
+      } else if (this.rawValue[0] !== 0) {
         this.accumulator += parseFloat(this.calcValue);
       }
       this.operation = operator;
+      this.rawValue = [0];
+    },
+    equals: function () {
+      if (this.finalInt === 0) {
+        this.finalInt = parseFloat(this.calcValue);
+      }
+      this.accumulator += this.finalInt;
+      this.operation = "";
       this.rawValue = [0];
     },
   },
