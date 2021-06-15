@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue Calculator</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="container">
+      <div id="calculator">
+        <div id="display">{{ calcValue }} {{ operation }}</div>
+        <div id="buttons">
+          <button id="clear" class="calc-button operator" @click="clearDisplay">
+            C
+          </button>
+          <button
+            id="op-divide"
+            class="calc-button operator"
+            @click="operate('div')"
+          >
+            %
+          </button>
+          <button
+            id="op-multiply"
+            class="calc-button operator"
+            @click="operate('mult')"
+          >
+            x
+          </button>
+          <button
+            id="op-sub"
+            class="calc-button operator"
+            @click="operate('sub')"
+          >
+            -
+          </button>
+          <button
+            id="num-7"
+            class="calc-button number"
+            value="7"
+            @click="addInt"
+          >
+            7
+          </button>
+          <button
+            id="num-8"
+            class="calc-button number"
+            value="8"
+            @click="addInt"
+          >
+            8
+          </button>
+          <button
+            id="num-9"
+            class="calc-button number"
+            value="9"
+            @click="addInt"
+          >
+            9
+          </button>
+          <button
+            id="op-add"
+            class="calc-button operator"
+            @click="operate('add')"
+          >
+            +
+          </button>
+          <button
+            id="num-4"
+            class="calc-button number"
+            value="4"
+            @click="addInt"
+          >
+            4
+          </button>
+          <button
+            id="num-5"
+            class="calc-button number"
+            value="5"
+            @click="addInt"
+          >
+            5
+          </button>
+          <button
+            id="num-6"
+            class="calc-button number"
+            value="6"
+            @click="addInt"
+          >
+            6
+          </button>
+          <button
+            id="num-1"
+            class="calc-button number"
+            value="1"
+            @click="addInt"
+          >
+            1
+          </button>
+          <button
+            id="num-2"
+            class="calc-button number"
+            value="2"
+            @click="addInt"
+          >
+            2
+          </button>
+          <button
+            id="num-3"
+            class="calc-button number"
+            value="3"
+            @click="addInt"
+          >
+            3
+          </button>
+          <button id="op-equal" class="calc-button operator">=</button>
+          <button
+            id="num-0"
+            class="calc-button number"
+            value="0"
+            @click="addInt"
+          >
+            0
+          </button>
+          <button id="dec" class="calc-button number" value="." @click="addInt">
+            .
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
