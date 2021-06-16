@@ -2,6 +2,7 @@ const display = new Vue({
   el: "#calculator",
   data: {
     rawValue: [0],
+    displayValue: 0,
     accumulator: "",
     operation: "",
     finalInt: 0,
@@ -24,8 +25,8 @@ const display = new Vue({
         }
       } else {
         if (this.rawValue[0] === 0 && this.rawValue.length === 1) {
-          let displayValue = this.accumulator;
-          return displayValue;
+          this.displayValue = this.accumulator;
+          return this.displayValue;
         } else {
           if (
             this.rawValue.length === 2 &&
@@ -47,11 +48,6 @@ const display = new Vue({
   methods: {
     pushInt: function (event) {
       this.rawValue.push(event.currentTarget.value);
-      // if (!this.accumulator) {
-      //   this.rawValue.push(event.currentTarget.value);
-      // } else if (this.accumulator && this.rawValue[0] === 0) {
-      //   this.rawValue[0] = event.currentTarget.value;
-      // }
     },
     clearDisplay: function () {
       this.rawValue = [0];
@@ -60,24 +56,55 @@ const display = new Vue({
       this.finalInt = 0;
     },
     returnDisplay: function () {
-      let displayValue = parseFloat(this.rawValue.join(""));
-      return displayValue;
+      this.displayValue = parseFloat(this.rawValue.join(""));
+      return this.displayValue;
     },
     operate: function (operator) {
-      if (!Number(this.accumulator)) {
+      this.operation = operator;
+      if (this.finalInt > 0) {
+        this.finalInt = 0;
+      }
+      if (!Number(this.accumulator) && operator === "add") {
         this.accumulator = parseFloat(this.calcValue);
-      } else if (this.rawValue[0] !== 0) {
+      } else if (this.rawValue[0] !== 0 && operator === "add") {
         this.accumulator += parseFloat(this.calcValue);
       }
-      this.operation = operator;
+      if (!Number(this.accumulator) && operator === "mult") {
+        this.accumulator = parseFloat(this.calcValue);
+      } else if (this.rawValue[0] !== 0 && operator === "mult") {
+        this.accumulator *= parseFloat(this.calcValue);
+      }
+      if (!Number(this.accumulator) && operator === "sub") {
+        this.accumulator = parseFloat(this.calcValue);
+      } else if (this.rawValue[0] !== 0 && operator === "sub") {
+        this.accumulator -= parseFloat(this.calcValue);
+      }
+      if (!Number(this.accumulator) && operator === "div") {
+        this.accumulator = parseFloat(this.calcValue);
+      } else if (this.rawValue[0] !== 0 && operator === "div") {
+        this.accumulator /= parseFloat(this.calcValue);
+      }
       this.rawValue = [0];
     },
     equals: function () {
       if (this.finalInt === 0) {
         this.finalInt = parseFloat(this.calcValue);
       }
-      this.accumulator += this.finalInt;
-      this.operation = "";
+      switch (this.operation) {
+        case "add":
+          this.accumulator += this.finalInt;
+          break;
+        case "sub":
+          this.accumulator -= this.finalInt;
+          break;
+        case "mult":
+          this.accumulator *= this.finalInt;
+          break;
+        case "div":
+          this.accumulator /= this.finalInt;
+          break;
+      }
+      // this.operation = "";
       this.rawValue = [0];
     },
   },

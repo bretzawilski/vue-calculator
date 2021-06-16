@@ -115,7 +115,12 @@
           >
             3
           </button>
-          <button id="op-equal" class="calc-button operator" @click="equals">
+          <button
+            id="op-equal"
+            class="calc-button operator"
+            @click="equals"
+            @keyup.enter="equals"
+          >
             =
           </button>
           <button
